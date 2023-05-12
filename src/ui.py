@@ -10,8 +10,10 @@ def show_ui(obstacles, bonus_cells, best_path, start_pos, target_pos):
     index = 0  # Index for the best path
     collected_bonuses = []  # Initialize the collected bonuses list
 
+    pressed_progress = False
+
     # Main loop for the visualization
-    while running:
+    while running and state != target_pos:
         # Fill the screen with a white background
         screen.fill(white)
 
@@ -38,24 +40,25 @@ def show_ui(obstacles, bonus_cells, best_path, start_pos, target_pos):
         # Update the screen with the new drawings
         pygame.display.flip()
 
-        # Flag for progressing through the path
-        progress = False
-
         # Loop until there is input to progress through the path
-        while not progress:
-            # Check for events (user input)
-            for event in pygame.event.get():
-                # If the user closes the window
-                if event.type == pygame.QUIT:
-                    running = False
-                    progress = True
-                # If the user presses the space key
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    # Update state with the next position from the best path
-                    state = best_path[index]
-                    index += 1  # Increment the best path index
-                    progress = True  # Set progress flag to true
+        # Check for events (user input)
+        for event in pygame.event.get():
+            # If the user closes the window
+            if event.type == pygame.QUIT:
+                running = False
+            # If the user presses the space key
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                pressed_progress = not pressed_progress
 
-                    # If the new state contains a bonus cell, add it to collected bonuses
-                    if state in bonus_cells:
-                        collected_bonuses.append(state)
+        if pressed_progress:
+            # Update state with the next position from the best path
+            state = best_path[index]
+            index += 1  # Increment the best path index
+
+            # If the new state contains a bonus cell, add it to collected bonuses
+            if state in bonus_cells:
+                collected_bonuses.append(state)
+
+        pygame.time.wait(50)
+
+
