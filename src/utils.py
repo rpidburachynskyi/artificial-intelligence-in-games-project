@@ -8,7 +8,7 @@ from src.constants import actions, action_map, grid_size, cell_size, screen
 
 
 # Function to randomly generate obstacle positions
-def obstacle_positions(num_obstacles, start, target):
+def obstacle_positions(num_obstacles, start_pos, target_pos):
     positions = []  # Create an empty list to store obstacle positions
 
     # Keep generating obstacles until desired number is reached
@@ -20,7 +20,7 @@ def obstacle_positions(num_obstacles, start, target):
         new_pos = (row, col)
 
         # Add the new position to the list if it's not already there, and it's not the start or target position
-        if new_pos not in positions and new_pos != start and new_pos != target:
+        if new_pos not in positions and new_pos != start_pos and new_pos != target_pos:
             positions.append(new_pos)
 
     return positions  # Return the final list of obstacle positions

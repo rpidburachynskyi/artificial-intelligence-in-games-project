@@ -21,8 +21,8 @@ blue = (0, 0, 255)
 red = (255, 0, 0)
 
 # Set grid, and target positions
-start = (0, 0, 0)
-target = (9, 9, 6)
+start_pos = (0, 0, 0)
+target_pos = (9, 9)
 
 # Define learning parameters
 alpha = 0.05
