@@ -6,23 +6,43 @@ from src.ui import show_ui
 from src.train import train
 
 
-if __name__ == '__main__':
-    multiprocessing.freeze_support()
-
+def full_train(example_name):
     start_pos = (0, 0)
     target_pos = (grid_size[0] - 1, grid_size[1] - 1)
 
     obstacles = obstacle_positions(num_obstacles, start_pos, target_pos)
     bonus_cells = bonus_positions(num_bonus_cells, start_pos, target_pos, obstacles)
 
-    pygame.init()
-
-    best_path = train(
+    best_path, q_table = train(
         obstacles=obstacles,
         bonus_cells=bonus_cells,
         start_pos=start_pos,
         target_pos=target_pos
     )
+
+
+    save_data_to_json(
+        q_table,
+        start_pos=start_pos,
+        target_pos=target_pos,
+        obstacles=obstacles,
+        bonus_cells=bonus_cells,
+        best_path=best_path,
+        grid_size=grid_size,
+        file_name=f'./{example_name}.json',
+    )
+
+    return start_pos, target_pos, obstacles, bonus_cells, best_path, q_table
+
+
+if __name__ == '__main__':
+    multiprocessing.freeze_support()
+
+    start_pos, target_pos, obstacles, bonus_cells, best_path, q_table = full_train(
+        'test'
+    )
+
+    pygame.init()
 
     show_ui(
         obstacles=obstacles,

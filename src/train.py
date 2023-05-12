@@ -13,7 +13,9 @@ def train(obstacles, bonus_cells, start_pos, target_pos):
 
     # Sort the results by the agent's total_reward (performance) in descending order
     # and extract the best path from the agent with the highest total_reward
-    best_path = sorted(results, key=lambda x: x[0], reverse=True)[0][2]
+    best_result = sorted(results, key=lambda x: x[0], reverse=True)[0]
+    best_path = best_result[2]
+    best_q_table = best_result[1]
 
     # Return the best path found by the agents
-    return best_path
+    return best_path, best_q_table

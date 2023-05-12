@@ -2,6 +2,7 @@
 import random
 import pygame
 import numpy as np
+import json
 
 # Import constants from the constants module
 from src.constants import actions, action_map, grid_size, cell_size, screen
@@ -82,3 +83,28 @@ def draw_cell(pos, color, size=0.9):
 
     # Draw the rectangle on the screen with the given color and dimensions
     pygame.draw.rect(screen, color, (x, y, width, height))
+
+
+def save_data_to_json(
+        q_table,
+        start_pos,
+        target_pos,
+        obstacles,
+        bonus_cells,
+        grid_size,
+        best_path,
+        file_name
+):
+    data = {
+        'q_table': q_table.tolist(),
+        'obstacles': obstacles,
+        'best_path': best_path,
+        'bonus_cells': bonus_cells,
+        'grid_size': grid_size,
+        'start_pos': start_pos,
+        'target_pos': target_pos
+    }
+
+    with open(file_name, 'w') as f:
+        print('Saving data to json file...', f)
+        json.dump(data, f, indent=4)
