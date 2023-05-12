@@ -38,8 +38,16 @@ def full_train(example_name):
 if __name__ == '__main__':
     multiprocessing.freeze_support()
 
-    start_pos, target_pos, obstacles, bonus_cells, best_path, q_table = full_train(
-        'test'
+    # comment to either train or load data from json
+
+    # train
+    # start_pos, target_pos, obstacles, bonus_cells, best_path, q_table = full_train(
+    #     'test'
+    # )
+
+    # load data from json
+    q_table, start_pos, target_pos, obstacles, bonus_cells, grid_size, best_path = load_data_from_json(
+        'test.json'
     )
 
     pygame.init()

@@ -107,3 +107,18 @@ def save_data_to_json(
 
     with open(file_name, 'w') as f:
         json.dump(data, f, indent=4)
+
+
+def load_data_from_json(file_name):
+    with open(file_name, 'r') as f:
+        data = json.load(f)
+
+    return (
+        np.array(data['q_table']),
+        tuple(data['start_pos']),
+        tuple(data['target_pos']),
+        set(tuple(t) for t in data['obstacles']),
+        set(tuple(t) for t in data['bonus_cells']),
+        tuple(data['grid_size']),
+        tuple(tuple(t) for t in data['best_path'])
+    )
