@@ -3,7 +3,7 @@ from src.utils import *
 
 
 # Main Q-learning agent function
-def q_learning_agent(agent_id, obstacles, bonus_cells):
+def q_learning_agent(agent_id, obstacles, bonus_cells, start_pos, target_pos):
     # Initialize exploration factor, maximum reward, and best path
     epsilon = 0.9
     max_reward = -2147483648
@@ -19,8 +19,8 @@ def q_learning_agent(agent_id, obstacles, bonus_cells):
             print(f'(Agent {agent_id}) Episode {episode + 1}/{n_episodes_for_each_agent}')
 
         # Initialize start state
-        state = (0, 0, 0)
-        state_pos = state[:2]
+        state = start_pos + (0,)
+        state_pos = start_pos
 
         # Create a set to store collected bonuses
         collected_bonuses = set()
