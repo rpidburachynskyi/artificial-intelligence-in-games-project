@@ -97,14 +97,13 @@ def save_data_to_json(
 ):
     data = {
         'q_table': q_table.tolist(),
-        'obstacles': obstacles,
-        'best_path': best_path,
-        'bonus_cells': bonus_cells,
-        'grid_size': grid_size,
-        'start_pos': start_pos,
-        'target_pos': target_pos
+        'obstacles': list(obstacles),
+        'best_path': [(int(t[0]), int(t[1])) for t in best_path],
+        'bonus_cells': list(bonus_cells),
+        'grid_size': list(grid_size),
+        'start_pos': list(start_pos),
+        'target_pos': list(target_pos)
     }
 
     with open(file_name, 'w') as f:
-        print('Saving data to json file...', f)
         json.dump(data, f, indent=4)
