@@ -93,8 +93,10 @@ def save_data_to_json(
         bonus_cells,
         grid_size,
         best_path,
-        file_name
+        example_name
 ):
+    file_name = f'examples/{example_name}.json'
+
     data = {
         'q_table': q_table.tolist(),
         'obstacles': list(obstacles),
@@ -109,7 +111,9 @@ def save_data_to_json(
         json.dump(data, f, indent=4)
 
 
-def load_data_from_json(file_name):
+def load_data_from_json(example_name):
+    file_name = f'examples/{example_name}.json'
+
     with open(file_name, 'r') as f:
         data = json.load(f)
 
