@@ -29,7 +29,7 @@ def q_learning_agent(agent_id, obstacles, bonus_cells, start_pos, target_pos):
         path = []
 
         # Keep running the episode until the target is reached and all bonuses are collected
-        while not(state[:2] == target_pos and len(collected_bonuses) == num_bonus_cells):
+        while not(state[:2] == target_pos and len(collected_bonuses) == num_bonus_cells) and len(path) < 10000:
             # Choose an action based on the current state and Q-table values
             action = choose_action(state, q_table, epsilon)
             # Calculate the next state after taking the action
