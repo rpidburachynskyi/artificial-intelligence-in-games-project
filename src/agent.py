@@ -69,7 +69,7 @@ def q_learning_agent(agent_id, obstacles, bonus_cells, start_pos, target_pos):
             best_path = path
 
         # Update epsilon (decrease exploration as the agent learns)
-        epsilon *= 0.99
+        epsilon = max(epsilon * 0.99, 0.2)
 
     # Return the maximum reward, Q-table, and best path
     return max_reward, q_table, best_path
