@@ -56,6 +56,7 @@ if __name__ == '__main__':
         obstacles=obstacles,
         bonus_cells=bonus_cells,
         best_path=best_path,
+        grid_size=grid_size,
         start_pos=start_pos,
         target_pos=target_pos
     )

@@ -5,7 +5,7 @@ import numpy as np
 import json
 
 # Import constants from the constants module
-from src.constants import actions, action_map, grid_size, cell_size, screen
+from src.constants import actions, action_map, grid_size, cell_size
 
 
 # Function to randomly generate obstacle positions
@@ -72,7 +72,7 @@ def choose_action(state, q_table, epsilon):
 
 
 # Function to draw a rectangle within the specified cell
-def draw_cell(pos, color, size=0.9):
+def draw_cell(screen, pos, color, size=0.9):
     # Calculate the x and y coordinates (top left corner) of the rectangle
     x = pos[1] * cell_size + (cell_size * (1 - size)) // 2
     y = pos[0] * cell_size + (cell_size * (1 - size)) // 2
