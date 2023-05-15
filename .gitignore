@@ -1,1 +1,4 @@
 .idea
+
+# exclude temp word files
+~$*
