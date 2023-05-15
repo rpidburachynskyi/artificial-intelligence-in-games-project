@@ -35,8 +35,31 @@ def full_train(example_name):
     return start_pos, target_pos, obstacles, bonus_cells, best_path, q_table
 
 
+def show_example(example_name):
+    # load data from json
+    q_table, start_pos, target_pos, obstacles, bonus_cells, grid_size, best_path = load_data_from_json(
+        example_name
+    )
+
+    show_ui(
+        obstacles=obstacles,
+        bonus_cells=bonus_cells,
+        best_path=best_path,
+        grid_size=grid_size,
+        start_pos=start_pos,
+        target_pos=target_pos,
+        example_name=example_name
+    )
+
+def show_examples(example_names):
+    with multiprocessing.Pool() as pool:
+        pool.map(show_example, example_names)
+
+
 if __name__ == '__main__':
     multiprocessing.freeze_support()
+
+    pygame.init()
 
     # comment to either train or load data from json
 
@@ -45,21 +68,7 @@ if __name__ == '__main__':
     #     'big-field'
     # )
 
-    # load data from json
-    q_table, start_pos, target_pos, obstacles, bonus_cells, grid_size, best_path = load_data_from_json(
-        'big-field'
-    )
-
-    pygame.init()
-
-    show_ui(
-        obstacles=obstacles,
-        bonus_cells=bonus_cells,
-        best_path=best_path,
-        grid_size=grid_size,
-        start_pos=start_pos,
-        target_pos=target_pos
-    )
+    show_examples(['small-field-1', 'small-field-2', 'small-field-3', 'medium-field', 'big-field'])
 
     # Quit Pygame
     pygame.quit()
