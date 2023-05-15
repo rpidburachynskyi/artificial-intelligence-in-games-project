@@ -5,12 +5,12 @@ from src.utils import *
 
 
 # Define the show_ui function to visualize the agent's best path
-def show_ui(obstacles, bonus_cells, best_path, grid_size, start_pos, target_pos):
+def show_ui(obstacles, bonus_cells, best_path, grid_size, start_pos, target_pos, example_name):
     screen_size = (cell_size * grid_size[0], cell_size * grid_size[1])
 
     # Create the screen
     screen = display.set_mode(screen_size)
-    display.set_caption('Reinforcement Learning Example')
+    display.set_caption(f'Showing example: {example_name}')
 
     state = start_pos  # Set the initial state to the start position
     running = True  # Control variable for the main loop
@@ -21,7 +21,7 @@ def show_ui(obstacles, bonus_cells, best_path, grid_size, start_pos, target_pos)
     pressed_progress = False
 
     # Main loop for the visualization
-    while running and state != target_pos or len(collected_bonuses) != len(bonus_cells):
+    while running:
         # Fill the screen with a white background
         screen.fill(white)
 
@@ -68,5 +68,9 @@ def show_ui(obstacles, bonus_cells, best_path, grid_size, start_pos, target_pos)
                 collected_bonuses.add(state)
 
         pygame.time.wait(50)
+
+        if (index >= len(best_path)):
+            collected_bonuses = set()
+            index = 0
 
 
