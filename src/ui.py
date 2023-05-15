@@ -8,12 +8,12 @@ def show_ui(obstacles, bonus_cells, best_path, start_pos, target_pos):
     running = True  # Control variable for the main loop
 
     index = 0  # Index for the best path
-    collected_bonuses = []  # Initialize the collected bonuses list
+    collected_bonuses = set()  # Initialize the collected bonuses list
 
     pressed_progress = False
 
     # Main loop for the visualization
-    while running and state != target_pos:
+    while running and state != target_pos or len(collected_bonuses) != len(bonus_cells):
         # Fill the screen with a white background
         screen.fill(white)
 
@@ -57,7 +57,7 @@ def show_ui(obstacles, bonus_cells, best_path, start_pos, target_pos):
 
             # If the new state contains a bonus cell, add it to collected bonuses
             if state in bonus_cells:
-                collected_bonuses.append(state)
+                collected_bonuses.add(state)
 
         pygame.time.wait(50)
 
