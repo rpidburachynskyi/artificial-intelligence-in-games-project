@@ -29,7 +29,7 @@ def full_train(example_name):
         bonus_cells=bonus_cells,
         best_path=best_path,
         grid_size=grid_size,
-        file_name=f'./{example_name}.json',
+        example_name=example_name
     )
 
     return start_pos, target_pos, obstacles, bonus_cells, best_path, q_table
@@ -42,12 +42,12 @@ if __name__ == '__main__':
 
     # train
     # start_pos, target_pos, obstacles, bonus_cells, best_path, q_table = full_train(
-    #     'test'
+    #     'big-field'
     # )
 
     # load data from json
     q_table, start_pos, target_pos, obstacles, bonus_cells, grid_size, best_path = load_data_from_json(
-        'test.json'
+        'big-field'
     )
 
     pygame.init()
